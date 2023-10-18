@@ -1,0 +1,23 @@
+ 
+
+Fork --->. If we want someone's repo then we fork that repo to our own account which is by convention is called as "Origin".  In that case that project will now will be on your GitHub account's repo.  Now you can clone this project to your local machine by clone it 
+~ Git clone <Your url>`
+
+
+Fork --> means to make a copy of that code onto your own github account.
+Where it will be shown as `<account-name>/reponame`
+
+
+
+Git Upstream -->  is the url of that project from where you have forked.
+
+
+You can add this by `git remote add upstream <url of that project>`
+
+   Origin ->url path to our own repo on our GitHub account.
+   Upstream -> url path of another persons repo which we want to fork.
+
+
+
+What is pull request?
+     
