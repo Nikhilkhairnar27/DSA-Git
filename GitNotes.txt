@@ -1,6 +1,6 @@
  
 
-Fork --->. If we want someone's repo then we fork that repo to our own account which is by convention is called as "Origin".  In that case that project will now will be on your GitHub account's repo.  Now you can clone this project to your local machine by clone it 
+Fork --->. If we want someone's repo then we fork that repo to our own account which is by convention is called as "Origin".  In that case that project now will be on your GitHub account's repo.  Now you can clone this project to your local machine by clone it 
 ~ Git clone <Your url>`
 
 
@@ -20,4 +20,53 @@ You can add this by `git remote add upstream <url of that project>`
 
 
 What is pull request?
+   Pull request is  letting you tell or show your work towards project with fellow members / admin of that project.
+
+Note: if a branch already has a pull request associated with it, it will not allow to create new PR. New commits will keep on getting added on same PR. Which will make difficult to review the code.
+So always have 	`One branch --> One PR`. --> one branch can only open one pull request.
      
+
+Consider a scenario, you are working on a project and you have fork that project onto your account. Next day you realise that someone had merge their changes to that projects main branch but you don't have those changes, Following ways to get those changes to your repo or update your repo-
+(1) Via UI - use button named as `Fetch upstream`.
+(2) Terminal - 
+	(1) checkout your `main` branch [ move the head to the main branch ].
+	(2) use following command:
+   `git fetch --all --prune`   [ prune - ones that are deleted in your cloned repo, they will also be fetched from `main` of upstream ].
+	(3) Reset the `main` branch of `Origin` to `main` branch of upstream
+    `git reset --hard upstream/main`. [ by resetting the no. commits in your Origin `main` will be exact match with the no. of commits to Upstream's `main` branch. ]
+	(4) push the changes - `git push origin main`.
+
+  OR. 
+	(1) do `git pull upstream main`.  
+	(2) `git push origin main`.
+
+  `Git pull` internally does all the 3 steps above. So either you do 3 steps or just run this one command.
+
+
+
+Note - before creating a new branch make sure your `main` branch is upto date.
+
+ Merge Conflict, Squashing -
+
+
+Suppose you have more than one commit on one particular branch and you need to make all the commits into one single commit i.e squash it.
+
+Method one: (1) reset it to earlier commit which is already being pushed to Origin
+	     (2) `git add .` and `git commit -m <message>`
+
+Method two: (1) get the commit id of that commit which is already being pushed to origin.
+	     (2) do `git rebase  -I  <commit id>`. [- I - means interactive environment ].  By this you will now have a choice to pick or squash all the commits after this
+
+
+E.g -> commit- 1  -->. Commit already being pushed to Origin.
+	commit- 2
+	commit- 3
+	commit- 4
+Now by above command of rebase to commit -1. You will be able to edit file where you can either pick or squash the commit 2, 3 and 4.
+
+   For this scenario, you can pick commit - 2 or squash commit 3, 4.
+Note: Just write 'pick' or 'squash' in front of commit ID in that file. Save it and exit
+
+Result: commit 3 and 4 will be merged into commit 2
+
+
